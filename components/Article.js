@@ -86,6 +86,14 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Stuff Happened at the Place!',
+    date:  'Feb 32nd, 2100',
+    firstParagraph: `THERE ARE WERDS HERE I WRITE WERDS`,
+    secondParagraph:`MORE WERDS SO MANY WERDS`,
+    thirdParagraph:`THIS IS THIRD WERDS`
+
   }
 ];
 
@@ -102,9 +110,11 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
-
+  
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
+0
+
 
   Step 3: Don't forget to return something from your function!
 
@@ -114,3 +124,47 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+function articleMaker({title, date, firstParagraph,secondParagraph,thirdParagraph}){
+ 
+  let topdiv=document.createElement('div')
+  let titleh2=document.createElement('h2')
+  let datep=document.createElement('p')
+  let p1=document.createElement('p')
+  let p2=document.createElement('p')
+  let p3=document.createElement('p')
+  let span=document.createElement('span')
+
+  titleh2.textContent=title
+  datep.textContent=date
+  p1.textContent=firstParagraph
+  p2.textContent=secondParagraph
+  p3.textContent=thirdParagraph
+  span.textContent="+"
+
+
+  topdiv.appendChild(titleh2)
+  topdiv.appendChild(datep)
+  topdiv.appendChild(p1)
+  topdiv.appendChild(p2)
+  topdiv.appendChild(p3)
+  topdiv.appendChild(span)
+
+  topdiv.classList.add("article")
+  datep.classList.add("date")
+  span.classList.add("expandButton")
+
+  span.addEventListener("click",(event)=>{
+    topdiv.classList.toggle("article-open")
+  })
+  return topdiv
+}
+
+
+
+
+data.forEach(i=>{
+const newArticle=articleMaker(i)
+document.body.appendChild(newArticle)
+
+})
